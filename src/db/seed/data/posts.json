@@ -1,0 +1,12 @@
+[
+  {
+    "title": "MVC Project",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum bibendum urna, dignissim hendrerit orci mattis dapibus. Donec ac lorem odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet eros dui. Nunc sem ligula, elementum id efficitur a, sodales non orci. Quisque cursus lectus ac elit dignissim, ut interdum risus placerat. Donec elementum porta ultricies. Proin odio sapien, fermentum nec nulla posuere, elementum malesuada nunc. Quisque nec dolor eu nunc sagittis posuere.",
+    "user_id": 1
+  },
+  {
+    "title": "React Project",
+    "body": "Sed consequat turpis sed vestibulum venenatis. Mauris sed porta neque. Aenean non nulla sit amet velit iaculis varius. Aenean non ex iaculis, ullamcorper ante non, maximus felis. Curabitur nec congue sapien. Suspendisse at metus vehicula, cursus velit nec, bibendum massa. Vestibulum iaculis augue sed justo efficitur fermentum. Curabitur in orci convallis, laoreet augue et, tincidunt metus. Phasellus mauris ante, mollis blandit turpis a, viverra lacinia ex. Fusce interdum orci massa, a lacinia elit imperdiet ut. Donec commodo justo non quam condimentum vehicula. Duis tincidunt mattis neque vitae condimentum. Integer mollis egestas accumsan. In elementum fermentum odio sed fringilla. Donec cursus lorem vitae mauris facilisis congue.",
+    "user_id": 2
+  }
+]
