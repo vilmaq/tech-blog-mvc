@@ -8,6 +8,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./config/connection");
 const routes = require("./routes");
+const helpers = require("./helpers");
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +23,7 @@ const sessionOptions = {
   }),
 };
 
-const handlebarsOptions = {};
+const handlebarsOptions = { helpers };
 
 const hbs = handlebars.create(handlebarsOptions);
 
@@ -43,7 +44,7 @@ const init = async () => {
       console.log(`Server running on http://localhost:${PORT}`)
     );
   } catch (error) {
-    console.error("Failed to connect to Database tech-blog-mvc");
+    console.error("Failed to connect to DB");
   }
 };
 

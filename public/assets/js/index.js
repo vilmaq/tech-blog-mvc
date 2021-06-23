@@ -1,71 +1,180 @@
-const handleSignupSubmit = () => {
-  // POST request with username and password
-  // /auth/sign-up
-  // on success window location to /login
-};
-
-const handleLoginSubmit = (event) => {
+const handleSignupSubmit = async (event) => {
   event.preventDefault();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const username = $("#username").val();
+  const password = $("#password").val();
+  const confirmPassword = $("#confirmPassword").val();
 
-    const username = $("#username").val();
-    const password = $("#password").val();
-
+  if (password === confirmPassword) {
     const requestBody = {
       username: username,
       password: password,
     };
+
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       redirect: "follow",
-      body: JSON.stringify({
-        requestBody,
-      }),
+      body: JSON.stringify(requestBody),
     };
 
-    const response = await fetch("/auth/login", options);
+    const response = await fetch("/auth/sign-up", options);
 
-    if (response.status !== 200) {
-      console.log("FAILED LOGIN");
+    if (response.status === 200) {
+      window.location.replace("/login");
     } else {
-      window.location.replace("/dashboard");
+      console.log("Failed to signup");
     }
+  } else {
+    console.log("Passwords do not match");
+  }
+};
+
+const handleLoginSubmit = async (event) => {
+  event.preventDefault();
+
+  const username = $("#username").val();
+  const password = $("#password").val();
+
+  const requestBody = {
+    username: username,
+    password: password,
   };
 
-  $("#login-form").submit(handleSubmit);
-  // POST request with username and password
-  // /auth/login
-  // on success window location to /dashboard
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify(requestBody),
+  };
+
+  const response = await fetch("/auth/login", options);
+
+  if (response.status === 200) {
+    window.location.replace("/dashboard");
+  } else {
+    console.log("Failed to login");
+  }
 };
 
-const handleLogoutClick = () => {
-  // POST request with username and password
-  // /auth/logout
-  // on success window location to /
+const handleLogoutClick = async () => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch("/auth/logout", options);
+
+  if (response.status === 200) {
+    window.location.replace("/login");
+  } else {
+    console.log("Failed to logout");
+  }
 };
 
-const handleCommentSubmit = () => {
-  // POST request with comment message
-  // /api/posts/{postId}/comments
-  // on success window location to /posts/{postId}
+const handleCommentSubmit = async (event) => {
+  event.preventDefault();
+
+  const { id } = event.currentTarget;
+  const message = $("#comment").val();
+
+  console.log(id, message);
+
+  const requestBody = { message };
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify(requestBody),
+  };
+
+  const response = await fetch(`/api/posts/${id}/comments`, options);
+
+  if (response.status === 200) {
+    window.location.replace(window.location.pathname);
+  } else {
+    console.log("Failed to post comment");
+  }
 };
 
-const handlePostSubmit = () => {
+const handlePostSubmit = async (event) => {
+  event.preventDefault();
+  const title = $("#title").val();
+  const body = $("#body").val();
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, body }),
+  };
+
+  const response = await fetch(`/api/posts`, options);
+  console.log(response);
   // POST request with title and body
   // /api/posts
   // on success window location to /dashboard
 };
 
-const handlePostDelete = () => {
+const handlePostDelete = async (event) => {
   // DELETE request for post id
   // /api/posts/{postId}
   // on success window location to /dashboard
+
+  const { id } = event.currentTarget;
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch(`/api/posts/${id}`, options);
+
+  if (response.status === 200) {
+    window.location.replace("/dashboard");
+  } else {
+    console.log("Failed to delete post");
+  }
+};
+
+const handleCommentDelete = async (event) => {
+  const { id } = event.currentTarget;
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch(`/api/comments/${id}`, options);
+
+  if (response.status === 200) {
+    window.location.replace(window.location.pathname);
+  } else {
+    console.log("Failed to delete comment");
+  }
 };
 
 console.log("client-side JS");
-$("#loginForm").submit(handleLoginSubmit);
+$("#login-form").submit(handleLoginSubmit);
+$("#sign-up-form").submit(handleSignupSubmit);
+$("#logout-btn").click(handleLogoutClick);
+$('[name="delete-comment-btn"]').click(handleCommentDelete);
+$('[name="comment-form"]').submit(handleCommentSubmit);
+$("#create-post-form").submit(handlePostSubmit);
+$(".btn-delete-post").click(handlePostDelete);
