@@ -10,6 +10,4 @@ router.use("/api", api);
 router.use("/auth", auth);
 router.use("/", view);
 
-// router.use("/", viewRoutes);
-
 module.exports = router;
