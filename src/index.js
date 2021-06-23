@@ -43,7 +43,7 @@ const init = async () => {
       console.log(`Server running on http://localhost:${PORT}`)
     );
   } catch (error) {
-    console.error("Failed to connect to DB");
+    console.error("Failed to connect to Database tech-blog-mvc");
   }
 };
 
