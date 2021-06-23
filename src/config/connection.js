@@ -14,8 +14,7 @@ const dbPassword = process.env.DB_PASSWORD;
 let connection;
 
 if (process.env.JAWSDB_URL) {
-  // connection for heroku
-  connection = new sequelize(process.env.JAWSDB_URL);
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   // connection for local development
   connection = new sequelize(dbName, dbUser, dbPassword, dbOptions);
