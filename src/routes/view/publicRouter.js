@@ -1,13 +1,13 @@
 const { Router } = require("express");
 
-const renderHomePage = require("../../controllers/view/renderHomePage");
-const renderLoginPage = require("../../controllers/view/renderLoginPage");
-const renderSignupPage = require("../../controllers/view/renderSignupPage");
+const handleSignUp = require("../../controllers/auth/handleSignUp");
+const handleLogin = require("../../controllers/auth/handleLogin");
+const handleLogout = require("../../controllers/auth/handleLogout");
 
 const router = Router();
 
-router.get("/sign-up", renderSignupPage);
-router.get("/login", renderLoginPage);
-router.get("/", renderHomePage);
+router.post("/sign-up", handleSignUp);
+router.post("/login", handleLogin);
+router.post("/logout", handleLogout);
 
 module.exports = router;
