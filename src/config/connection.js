@@ -1,4 +1,4 @@
-const sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 
 const dbOptions = {
   host: process.env.DB_HOST,
@@ -17,7 +17,7 @@ if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   // connection for local development
-  connection = new sequelize(dbName, dbUser, dbPassword, dbOptions);
+  connection = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
 }
 
 module.exports = connection;
