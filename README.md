@@ -37,8 +37,6 @@ To install the packages:
 - [Github](https://github.com/vilmaq/tech-blog-mvc)
 - [Heroku](https://v-tech-blog-mvc.herokuapp.com)
 
-not able to troubleshoot the problem with heroku JawsDb. Receiving error: 2021-06-23T23:26:44.772711+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/" host=v-tech-blog-mvc.herokuapp.com request_id=855a0e7f-9ac1-4c5a-9bf0-b004202c2fda fwd="88.98.241.250" dyno= connect= service= status=502 bytes= protocol=https
-
 ```
 
 ```
